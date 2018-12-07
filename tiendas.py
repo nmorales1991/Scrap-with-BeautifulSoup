@@ -12,6 +12,7 @@ def get_producto_url(categoria,tienda):
 		#print(store.leer_urls(url,tienda,categoria))
 		producto = store.leer_urls(url,tienda,categoria)
 		if producto!="no":
+			producto.guardarProductos()
 			producto.guardarPrecios()
 
 for nombre,tienda in Listado.tiendas():

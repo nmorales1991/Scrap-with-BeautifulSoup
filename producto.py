@@ -40,7 +40,7 @@ class Producto:
         }"""
 
     def guardarProductos(self):
-        string_conexion = "dbname='precios_supermercados' user='postgres' host='localhost' password='226264nicolas'"
+        string_conexion = "dbname='supermercados' user='postgres' host='localhost' password='226264nicolas'"
         db = psycopg2.connect(string_conexion)
         cursor = db.cursor()
         sql= """INSERT INTO lista_productos(codigo_supermercado,codigo_producto, categoria_producto, nombre_producto,descripcion_producto) SELECT * FROM (SELECT %s,%s, %s, %s,%s) AS tmp WHERE NOT EXISTS (SELECT codigo_producto FROM lista_productos WHERE codigo_producto = %s and codigo_supermercado= %s) LIMIT 1;"""
@@ -53,7 +53,7 @@ class Producto:
 
         db.close()
     def guardarPrecios(self):
-        string_conexion = "dbname='precios_supermercados' user='postgres' host='localhost' password='226264nicolas'"
+        string_conexion = "dbname='supermercados' user='postgres' host='localhost' password='226264nicolas'"
         db = psycopg2.connect(string_conexion)
         cursor = db.cursor()
         sql= """INSERT INTO precios_productos(codigo_producto,codigo_supermercado, precio_normal, precio_oferta) VALUES (%s,%s,%s,%s);"""
