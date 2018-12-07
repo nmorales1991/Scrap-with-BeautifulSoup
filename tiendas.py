@@ -7,7 +7,7 @@ def get_producto_categoria(tienda):
 			get_producto_url(categoria,tienda)
 			
 def get_producto_url(categoria,tienda):
-	#print(categoria)
+	print(categoria)
 	for url in store.url_por_categoria(categoria):
 		#print(store.leer_urls(url,tienda,categoria))
 		producto = store.leer_urls(url,tienda,categoria)
