@@ -154,8 +154,8 @@ class Tottus():
 			session = session_with_proxy(extra_args)
 			pagina = 0
 			while True:
-				url_categoria = 'http://www.tottus.cl/tottus/productListFragment/Alimento-Perro/{}?No={}' \
-								'&Nrpp=&currentCatId={}'.format(id_extension, pagina , id_extension)
+				url_categoria = 'http://www.tottus.cl/tottus/productListFragment/{}/{}?No={}' \
+								'&Nrpp=&currentCatId={}'.format(extension,id_extension, pagina , id_extension)
 				
 				try:
 					response = session.get(url_categoria,timeout=15)
