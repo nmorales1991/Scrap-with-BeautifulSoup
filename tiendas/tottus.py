@@ -156,7 +156,6 @@ class Tottus():
 			while True:
 				url_categoria = 'http://www.tottus.cl/tottus/productListFragment/{}/{}?No={}' \
 								'&Nrpp=&currentCatId={}'.format(extension,id_extension, pagina , id_extension)
-				
 				try:
 					response = session.get(url_categoria,timeout=15)
 				except Exception as x:
@@ -171,6 +170,7 @@ class Tottus():
 				name_box = soup.findAll('div', attrs={'class': 'caption-bottom-wrapper'})
 			
 				if not name_box:
+					print("no name box")
 					break
 				for name_box in name_box:
 					product_url = name_box.find('a')['href']
@@ -178,7 +178,6 @@ class Tottus():
 					product_urls.append(product_url)
 					
 				pagina += 15
-				
 				
 		return product_urls
 
@@ -200,37 +199,41 @@ class Tottus():
 		else:
 			return 'no'
 
-		form = soup.find('form', attrs={'data-static': '//www.tottus.cl/static/1524a/'})
+		caption = soup.find('div', {'class': 'caption-description'})
+		if not caption:
+			return 'no'
+		nombre = caption.find('div',{'class':'title'}).h5
+		if not nombre:
+			return 'no'
+		descripcion = "desc: "+nombre.text.strip()
+
+		form = soup.find('form', attrs={'data-static': '//www.tottus.cl/static/1899a/'})
 		if not form:
 			return 'no'
 		codigo = form.get('data-productid')
 		if not codigo:
 			return 'no'
+		
+		price_selector = soup.find('div',{'class':'price-selector'})
+		precio_oferta = price_selector.find('span',{'class':'active-price'}).findChild().text.strip()
+		precio_nulo = price_selector.find('span',{'class':'nule-price'})
+		
 
-		caption = soup.find('div', {'class': 'caption-description'})
-		if not caption:
-			return 'no'		
-		nombre = caption.find('div',{'class':'title'}).h5
-		if not nombre:
-			return 'no'
-		descripcion = "desc: "+nombre.text.strip()
+		if not precio_nulo:
+			precio_normal = precio_oferta
+		else:
+			precio_normal = precio_nulo.text.strip()
+
 		product = Producto(
 				codigo,
            		nombre.text.strip(),
            		supermercado,
            		categoria,
            		product_urls,
-           		0,
-           		0,
+           		int(precio_normal[2:].replace(".","")),
+           		int(precio_oferta[2:].replace(".","")),
            		0,
            		0,
            		descripcion
        		 )
 		return product
-
-
-
-
-
-
-
