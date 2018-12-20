@@ -60,7 +60,7 @@ class Producto:
         try:
           cursor.execute(sql,(self.codigo,self.tienda,self.precio_normal,self.precio_oferta))
           db.commit()
-          #print("Tienda: ",self.tienda," Producto: ",self.codigo," - ",self.nombre," - ",self.precio_normal," - ",self.precio_oferta," - GUARDADO")
+          print("Tienda: ",self.tienda," Producto: ",self.codigo," - ",self.nombre," - ",self.precio_normal," - ",self.precio_oferta," - GUARDADO")
         except: 
           db.rollback()
 
