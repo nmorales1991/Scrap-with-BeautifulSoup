@@ -9,9 +9,9 @@ def get_producto_categoria(tienda):
 def get_producto_url(categoria,tienda):
 	print(categoria)
 	for url in store.url_por_categoria(categoria):
-		print("url: ",url)
 		#print(store.leer_urls(url,tienda,categoria))
-		#producto = store.leer_urls(url,tienda,categoria)
+		producto = store.leer_urls(url,tienda,categoria)
+		print(producto)
 		#if producto!="no":
 			#producto.guardarProductos()
 			#producto.guardarPrecios()
