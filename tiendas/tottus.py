@@ -170,7 +170,7 @@ class Tottus():
 				name_box = soup.findAll('div', attrs={'class': 'caption-bottom-wrapper'})
 			
 				if not name_box:
-					print("no name box")
+					#print("no name box")
 					break
 				for name_box in name_box:
 					product_url = name_box.find('a')['href']
@@ -188,37 +188,37 @@ class Tottus():
 		try:
 			response = session.get(product_urls,timeout=15)
 		except Exception as x:
-			print("segundo intento conexión")
+			#print("segundo intento conexión")
 			try:
 				response = session.get(product_urls,timeout=15)
 			except Exception as x:
-				print("no se conectó")
+				#print("no se conectó")
 				return 'no'
 		
 
 		if response.text !="":
 			soup = BeautifulSoup(response.text, 'html.parser')
 		else:
-			print("no encontró html")
+			#print("no encontró html")
 			return 'no'
 
 		caption = soup.find('div', {'class': 'caption-description'})
 		if not caption:
-			print("no encontró caption-description")
+			#print("no encontró caption-description")
 			return 'no'
 		nombre = caption.find('div',{'class':'title'}).h5
 		if not nombre:
-			print("no encontró title")
+			#print("no encontró title")
 			return 'no'
 		descripcion = "desc: "+nombre.text.strip()
 
-		form = soup.find('form', attrs={'data-static': '//www.tottus.cl/static/1899a/'})
+		form = soup.find('form', attrs={'data-static': '//www.tottus.cl/static/1920a/'})
 		if not form:
-			print("no encontró form")
+			#print("no encontró form")
 			return 'no'
 		codigo = form.get('data-productid')
 		if not codigo:
-			print("no encontró data-productid")
+			#print("no encontró data-productid")
 			return 'no'
 		
 		price_selector = soup.find('div',{'class':'price-selector'})
