@@ -7,13 +7,14 @@ def get_producto_categoria(tienda):
 			get_producto_url(categoria,tienda)
 			
 def get_producto_url(categoria,tienda):
-	#print(categoria)
+	print(categoria)
 	for url in store.url_por_categoria(categoria):
+		print("url: ",url)
 		#print(store.leer_urls(url,tienda,categoria))
-		producto = store.leer_urls(url,tienda,categoria)
-		if producto!="no":
-			producto.guardarProductos()
-			producto.guardarPrecios()
+		#producto = store.leer_urls(url,tienda,categoria)
+		#if producto!="no":
+			#producto.guardarProductos()
+			#producto.guardarPrecios()
 
 for nombre,tienda in Listado.tiendas():
 	store = get_store_class_by_name(nombre)
