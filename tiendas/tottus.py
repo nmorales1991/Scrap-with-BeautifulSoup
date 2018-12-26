@@ -212,7 +212,7 @@ class Tottus():
 			return 'no'
 		descripcion = "desc: "+nombre.text.strip()
 
-		form = soup.find('form', attrs={'data-static': '//www.tottus.cl/static/1920a/'})
+		form = soup.find('form', attrs={'data-static': '//www.tottus.cl/static/1931a/'})
 		if not form:
 			#print("no encontró form")
 			return 'no'
