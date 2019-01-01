@@ -1,7 +1,7 @@
 class Listado():
 	def tiendas():
 		return[
-			['Tottus',3],
+			['Lider',1],
 			['Jumbo',2],
-			['Lider',1]
+			['Tottus',3]
 		]
